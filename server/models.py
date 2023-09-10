@@ -10,7 +10,7 @@ db = SQLAlchemy(metadata=metadata)
 
 class Bakery(db.Model, SerializerMixin):
     __tablename__ = 'bakeries'
-
+    name = db.Column(db.String)
     id = db.Column(db.Integer, primary_key=True)
 
 class BakedGood(db.Model, SerializerMixin):
