@@ -10,17 +10,21 @@ db = SQLAlchemy(metadata=metadata)
 
 class Bakery(db.Model, SerializerMixin):
     __tablename__ = 'bakeries'
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
-    bakery_id = db.Column(db.Integer, primary_key=True)
-    created_at = db.Column(db.DateTime,server_default=db.func.now())
-    # id = 
-    name = db.Column(db.String)
-    price = db.Column(db.Int)
-    updated_at = db.Column(db.Boolean)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
 
 class BakedGood(db.Model, SerializerMixin):
     __tablename__ = 'baked_goods'
-
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+    price = db.Column(db.Int)
+    # bakery_id goes here
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+    updated_at = db.Column(db.DateTiem, on_update=db.func.now())
+
+
+    # We have two tables, bakeries and baked_goods. The 'bakeries' table has one primary id that is referenced as 'bakery_id' in the baked_goods table. The baked good tables will have a primary id, and a forein key id called bakery_id. 
     
