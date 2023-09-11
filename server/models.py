@@ -11,7 +11,13 @@ db = SQLAlchemy(metadata=metadata)
 class Bakery(db.Model, SerializerMixin):
     __tablename__ = 'bakeries'
     name = db.Column(db.String)
-    id = db.Column(db.Integer, primary_key=True)
+    bakery_id = db.Column(db.Integer, primary_key=True)
+    created_at = db.Column(db.DateTime,server_default=db.func.now())
+    # id = 
+    name = db.Column(db.String)
+    price = db.Column(db.Int)
+    updated_at = db.Column(db.Boolean)
+
 
 class BakedGood(db.Model, SerializerMixin):
     __tablename__ = 'baked_goods'
