@@ -60,7 +60,7 @@ def bakery_by_id(id):
 @app.route('/baked_goods/by_price')
 def baked_goods_by_price():
     bakeries = []
-    for bakery in Bakery.query.order_by(desc(Bakery.price)).all():
+    for bakery in Bakery.query.order_by(desc(BakedGood.price)).all():
         # Change the query criteria to filter by price and return each object in a list in descinding order.
         bakery_dict = {
             "id": bakery.id,
