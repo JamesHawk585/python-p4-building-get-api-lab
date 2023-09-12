@@ -2,7 +2,7 @@
 
 from flask import Flask, make_response, jsonify
 from flask_migrate import Migrate
-
+from sqlalchemy import desc
 from models import db, Bakery, BakedGood
 
 app = Flask(__name__)
@@ -59,7 +59,23 @@ def bakery_by_id(id):
 # returns an array of baked goods as JSON, sorted by price in descending order. (HINT: how can you use SQLAlchemy to sort the baked goods in a particular order?)
 @app.route('/baked_goods/by_price')
 def baked_goods_by_price():
-    return ''
+    bakeries = []
+    for bakery in Bakery.query.order_by(desc(Bakery.price)).all():
+        # Change the query criteria to filter by price and return each object in a list in descinding order.
+        bakery_dict = {
+            "id": bakery.id,
+            "name": bakery.name,
+            "created_at": bakery.created_at,
+            "updated_at": bakery.updated_at
+        }
+        bakeries.append(bakery_dict)
+
+    response = make_response(
+        jsonify(bakeries),
+        200
+    )
+
+    return response 
 
 # returns the single most expensive baked good as JSON. (HINT: how can you use SQLAlchemy to sort the baked goods in a particular order and limit the number of results?)
 @app.route('/baked_goods/most_expensive')
