@@ -20,10 +20,10 @@ class BakedGood(db.Model, SerializerMixin):
     __tablename__ = 'baked_goods'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
-    price = db.Column(db.Int)
+    price = db.Column(db.Integer)
     bakery_id = db.relationship('bakeries', backref='baked_goods')
     created_at = db.Column(db.DateTime, server_default=db.func.now())
-    updated_at = db.Column(db.DateTiem, on_update=db.func.now())
+    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
 
     # We have two tables, bakeries and baked_goods. The 'bakeries' table has one primary id that is referenced as 'bakery_id' in the baked_goods table. The baked good tables will have a primary id, and a forein key id called bakery_id. 
