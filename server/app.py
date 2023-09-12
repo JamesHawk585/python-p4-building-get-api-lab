@@ -29,7 +29,7 @@ def bakeries():
             "created_at": bakery.created_at,
             "updated_at": bakery.updated_at
         }
-        bakery.append(bakery_dict)
+        bakeries.append(bakery_dict)
 
     response = make_response(
         jsonify(bakeries),
