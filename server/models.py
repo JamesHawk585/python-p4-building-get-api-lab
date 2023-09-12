@@ -18,10 +18,11 @@ class Bakery(db.Model, SerializerMixin):
 
 class BakedGood(db.Model, SerializerMixin):
     __tablename__ = 'baked_goods'
+    # serialize_rules = ('what_should_i_put_here.i_dont_know',)
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     price = db.Column(db.Integer)
-    bakery_id = db.relationship('bakeries', backref='baked_goods')
+    bakery_id = db.relationship('Bakery', backref='baked_goods')
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
