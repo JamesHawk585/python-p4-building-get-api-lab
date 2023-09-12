@@ -18,7 +18,8 @@ class Bakery(db.Model, SerializerMixin):
 
 class BakedGood(db.Model, SerializerMixin):
     __tablename__ = 'baked_goods'
-    # serialize_rules = ('what_should_i_put_here.i_dont_know',)
+    # serialize_rules = ('-bakeries.name',)
+    # The above line would exclude the name attribute of the Bakery class from serialization. It is not needed in this context?
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     price = db.Column(db.Integer)
@@ -28,5 +29,4 @@ class BakedGood(db.Model, SerializerMixin):
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
 
-    # We have two tables, bakeries and baked_goods. The 'bakeries' table has one primary id that is referenced as 'bakery_id' in the baked_goods table. The baked good tables will have a primary id, and a forein key id called bakery_id. 
-    
+# SQLAlchemy-serializer is configured as a parameter in each of our models. The SeializerMixin param maps each attribute in the class to a python dict. This dict is then serialized (converted) to a json response (a list of objects).  
