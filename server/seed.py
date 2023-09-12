@@ -27,9 +27,12 @@ with app.app_context():
     names = []
     for i in range(200):
 
-        name = fake.first_name()
+        # All of my baked goods are people. Do not eat them.  
+
+        # name = fake.first_name()
+        name = fake.food_name()
         while name in names:
-            name = fake.first_name()
+            name = fake.food_name()
         names.append(name)
 
         bg = BakedGood(
